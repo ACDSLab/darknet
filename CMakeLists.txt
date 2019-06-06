@@ -31,8 +31,8 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_LIST_DIR}/cmake/Modules/" ${CMAKE_MODULE_
 set(CMAKE_INSTALL_PREFIX "${CMAKE_CURRENT_LIST_DIR}" CACHE PATH "Install prefix" FORCE)
 set(INSTALL_BIN_DIR      "${CMAKE_CURRENT_LIST_DIR}" CACHE PATH "Path where exe and dll will be installed")
 set(INSTALL_LIB_DIR      "${CMAKE_CURRENT_LIST_DIR}" CACHE PATH "Path where lib will be installed")
-set(INSTALL_INCLUDE_DIR  "include/darknet"           CACHE PATH "Path where headers will be installed")
-set(INSTALL_CMAKE_DIR    "share/darknet"             CACHE PATH "Path where cmake configs will be installed")
+set(INSTALL_INCLUDE_DIR  "${CMAKE_CURRENT_LIST_DIR}/include/darknet"           CACHE PATH "Path where headers will be installed")
+set(INSTALL_CMAKE_DIR    "${CMAKE_CURRENT_LIST_DIR}/share/darknet"             CACHE PATH "Path where cmake configs will be installed")
 
 set(ENABLE_CUDA "FALSE" CACHE BOOL "Enable CUDA support")
 set(ENABLE_CUDNN "FALSE" CACHE BOOL "Enable CUDNN")
