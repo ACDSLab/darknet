@@ -74,7 +74,7 @@ find_package(Threads REQUIRED)
 if(MSVC)
   find_package(PThreads_windows REQUIRED)
 endif()
-find_package(OpenCV)
+find_package(OpenCV REQUIRED)
 find_package(Stb REQUIRED)
 if(${CMAKE_VERSION} VERSION_LESS "3.9.0")
   message(WARNING "To build with OpenMP support you need CMake 3.9.0+")
@@ -82,8 +82,8 @@ else()
   find_package(OpenMP)
 endif()
 
-set(ADDITIONAL_CXX_FLAGS "-Wall -Wno-unused-result -Wno-unknown-pragmas -Wfatal-errors -Wno-deprecated-declarations -Wno-write-strings")
-set(ADDITIONAL_C_FLAGS "-Wall -Wno-unused-result -Wno-unknown-pragmas -Wfatal-errors -Wno-deprecated-declarations -Wno-write-strings")
+set(ADDITIONAL_CXX_FLAGS "-pthread -Wall -Wno-unused-result -Wno-unknown-pragmas -Wfatal-errors -Wno-deprecated-declarations -Wno-write-strings")
+set(ADDITIONAL_C_FLAGS "-pthread -Wall -Wno-unused-result -Wno-unknown-pragmas -Wfatal-errors -Wno-deprecated-declarations -Wno-write-strings")
 
 if(MSVC)
   set(ADDITIONAL_CXX_FLAGS "/wd4013 /wd4018 /wd4028 /wd4047 /wd4068 /wd4090 /wd4101 /wd4113 /wd4133 /wd4190 /wd4244 /wd4267 /wd4305 /wd4477 /wd4996 /wd4819 /fp:fast")
@@ -361,11 +361,13 @@ if(OpenCV_FOUND AND OpenCV_VERSION VERSION_GREATER "3.0" AND NOT SKIP_USELIB_TRA
   )
 endif()
 
-install(EXPORT DarknetTargets
-  FILE DarknetTargets.cmake
-  NAMESPACE Darknet::
-  DESTINATION "${INSTALL_CMAKE_DIR}"
-)
+EXPORT(TARGETS dark FILE "${PROJECT_BINARY_DIR}/DarknetTargets.cmake")
+
+#install(EXPORT DarknetTargets
+#  FILE DarknetTargets.cmake
+#  NAMESPACE Darknet::
+#  DESTINATION "${CMAKE_CURRENT_LIST_DIR}"
+#)
 
 # Export the package for use from the build-tree (this registers the build-tree with a global CMake-registry)
 export(PACKAGE Darknet)

@@ -9,6 +9,7 @@ if(@OpenCV_FOUND@)
   find_dependency(OpenCV)
 endif()
 
+set(Stb_DIR @Stb_DIR@)
 find_dependency(Stb)
 
 if(@ENABLE_CUDA@)
